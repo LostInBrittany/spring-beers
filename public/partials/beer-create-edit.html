@@ -1,0 +1,67 @@
+<div class="container">
+
+	<div class="row">
+		<h1>{{action}} beer</h1>
+	</div>
+   	<form>
+   	    <div class="row">
+	    	<div class="form-group required col-md-6" >
+	    	    <label for="name" class="control-label">Beer name</label>
+	    		<input ng-model="name" class="form-control" id="name" 
+	    			placeholder="A name" type="text" required="true">
+	    	</div>
+    	    <div class="form-group required  col-md-6">
+	    	    <label for="alcohol" class="control-label">Alcohol content</label>
+	    		<input 
+	    			ng-model="alcohol" class="form-control" 
+	    			id="alcohol" placeholder="In degrees" 
+	    			type="number" min="0" max="30"
+	    			required="true">
+	    	</div>
+    	</div>
+    	<div class="form-group required">
+    		<label for="description" class="control-label">Beer description</label>
+    		<textarea ng-model="description" class="form-control" id="description" 
+    			placeholder="A description" required="true"></textarea>
+    	</div>
+    	
+    	<div class="form-group required">
+    	    <label for="img" class="control-label">Image URL</label>
+    		<input ng-model="img" class="form-control" id="img" 
+    			placeholder="URL of the image" type="url" required="true">
+    	</div>
+    	
+    	<div class="row">
+    	    <div class="form-group col-md-6">
+	    	    <label for="availability" class="control-label">Availability</label>
+	    		<input ng-model="availability" class="form-control" id="availability" placeholder="Beer availability" type="text">
+	    	</div>
+	    	
+	    	<div class="form-group col-md-6">
+	    	    <label for="brewery" class="control-label">Brewery</label>
+	    		<input ng-model="brewery" class="form-control" id="brewery" placeholder="Brewery" type="text">
+	    	</div>
+	    	
+	    	<div class="form-group col-md-6">
+	    	    <label for="label" class="control-label">Label image URL</label>
+	    		<input ng-model="label" class="form-control" id="label" placeholder="URL of the label image" type="url">
+	    	</div>
+	    	
+	    	<div class="form-group col-md-6">
+	    	    <label for="serving" class="control-label">Serving</label>
+	    		<input ng-model="serving" class="form-control" id="serving" placeholder="Serving advise" type="text">
+	    	</div>    
+    	</div>
+    	
+
+    		
+    	<div class="form-group">
+    	    <label for="style" class="control-label">Style</label>
+    		<input ng-model="style" class="form-control" id="style" placeholder="Serving style" type="text">
+    	</div>
+   	</form>
+  	
+   	<div class="row">
+		<h1 class="btn btn-success" ng-click="doAction()">Validate</h1>
+	</div>
+</div>
