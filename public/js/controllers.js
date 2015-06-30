@@ -4,6 +4,33 @@
 
 angular
   .module('BeerControllers', [])
+  .controller('LoginCtrl',['$scope', '$http', '$location', function($scope, $http, $location) {
+	  $scope.doSend = function() {
+		  console.log("I did it");
+		  $http({
+				  method: 'POST',
+				  url: "/login",
+				  data: {
+					  user: $scope.user,
+					  password: $scope.password
+				  },
+				  headers: {
+				        'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
+				  },
+				  transformRequest: function(obj) {
+				        var str = [];
+				        for(var p in obj)
+				        	if (obj[p] !== undefined) {
+				        		str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+				        	}
+				        return str.join("&");
+				  }
+		  }).success(function(data) {
+				    console.log("Login successful data", data);
+			    	$location.path("/beers"); 
+			  });
+	  };
+  }])
   .controller('BeerListCtrl', ['$scope', '$http', '$location', function($scope, $http, $location) {
 
     $scope.getBeerList = function() {

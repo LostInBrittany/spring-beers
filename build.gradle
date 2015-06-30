@@ -32,6 +32,8 @@ repositories {
 dependencies {
     compile("org.springframework.boot:spring-boot-starter-web")
     compile("org.springframework.boot:spring-boot-starter-data-mongodb")
+    compile("org.springframework.boot:spring-boot-starter-security");
+    
     compile("org.apache.commons:commons-lang3:3.0");
     compile("commons-validator:commons-validator:1.4.0");
     testCompile("org.springframework.boot:spring-boot-starter-test") 
