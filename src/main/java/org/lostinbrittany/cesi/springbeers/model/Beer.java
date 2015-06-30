@@ -21,10 +21,8 @@ public class Beer {
 	 * "Affligem Blond" }
 	 */
 	
-	@Id
-	private String _id;
-
 	private String name;
+	@Id
 	private String id;
 	private String img;
 	private String description;

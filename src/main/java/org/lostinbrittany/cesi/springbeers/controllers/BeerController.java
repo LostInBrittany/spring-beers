@@ -5,6 +5,7 @@ import java.util.List;
 import org.lostinbrittany.cesi.springbeers.dao.BeerRepository;
 import org.lostinbrittany.cesi.springbeers.model.Beer;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,11 +19,11 @@ public class BeerController {
 	
 	private List<Beer> beers = Beer.getBeers();
 	
-    @RequestMapping("/beerList")
+    @RequestMapping("/beer/list")
     public List<Beer> beerList() {
     	return repository.findAll();
     }
-    @RequestMapping("/beerDetails")
+    @RequestMapping("/beer/details")
     public Beer beerDetails(@RequestParam(value="id", required=true) String id) {
     	    	
     	/*for (Beer beer: beers) {
@@ -32,5 +33,28 @@ public class BeerController {
     	}*/
     	    	
     	return repository.findById(id);
+    }
+    
+    @RequestMapping("/beer/edit")
+    public Beer beerEdit(@RequestBody Beer beer) {    	
+		
+	repository.save(beer);
+	return beer;
+	
+    }
+    @RequestMapping("/beer/create")
+    public Beer beerCreate(@RequestBody Beer beer) {    	
+    		
+    	repository.save(beer);
+    	return beer;
+    	
+    }
+    
+
+    @RequestMapping("/beer/delete")
+    public void beerDelete(@RequestBody Beer beer) {
+    	repository.delete(beer);
+    	return;
+    	
     }
 }
