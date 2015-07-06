@@ -20,7 +20,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .formLogin()
                 .loginPage("/index.html#/login")
                 .defaultSuccessUrl("/index.html", true)
-                .failureUrl("/index.html#/loginFail")
+                .failureUrl("/partials/loginFail.html")
                 .loginProcessingUrl("/login")
                 .permitAll()
                 .and()
@@ -30,10 +30,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             	.csrf().disable();
     }
 
-    @Autowired
+/*    @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth
             .inMemoryAuthentication()
                 .withUser("user").password("password").roles("USER");
-    }
+    }*/
 }

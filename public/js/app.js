@@ -30,7 +30,11 @@ angularBeer.config(['$routeProvider',
       when('/login', {
     	templateUrl: 'partials/login.html',
     	controller: 'LoginCtrl'
-      }).
+      }).  
+      when('/loginFail', {
+        templateUrl: 'partials/loginFail.html',
+        controller: 'LoginCtrl'
+        }).
       otherwise({
         redirectTo: '/beers'
       });
