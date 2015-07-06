@@ -26,9 +26,15 @@ angular
 				        return str.join("&");
 				  }
 		  }).success(function(data) {
-				    console.log("Login successful data", data);
-				    console.log("Referer", $rootScope.referer)
-			    	$location.path($rootScope.referer); 
+		        if (data.match(/Fail/)) {
+		          console.log("Login Fail", data);
+		          $location.path("/login");
+		          $scope.fail = true;
+		        } else {
+		          console.log("Login successful", data);
+		          console.log("Referer", $rootScope.referer)
+		          $location.path($rootScope.referer);
+		        }
 			  });
 	  };
   }])
@@ -108,13 +114,14 @@ angular
 			  });
 	  	  }	    
   }])
-  .controller('BeerCreateCtrl', ['$scope', '$http', 
-                                 function($scope, $http) {
+  .controller('BeerCreateCtrl', ['$scope', '$http', '$location', '$rootScope',
+                                 function($scope, $http, $location, $rootScope) {
 	  
     $http.get('/authorized').success(function(data) {
       if (data.authorized === undefined ||  !data.authorized) {
         console.log("Authorization needed");
-	  		$location.path("/login");
+        $rootScope.referer = $location.path();
+        $location.path("/login");
 	  	} else {
 	  		console.log("Authorized");
 	  	}	  		
