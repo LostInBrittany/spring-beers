@@ -4,7 +4,7 @@
 
 angular
   .module('BeerControllers', [])
-  .controller('LoginCtrl',['$scope', '$http', '$location', function($scope, $http, $location) {
+  .controller('LoginCtrl',['$scope', '$http', '$location', '$rootScope', function($scope, $http, $location, $rootScope) {
 	  $scope.doSend = function() {
 		  console.log("I did it");
 		  $http({
@@ -27,7 +27,8 @@ angular
 				  }
 		  }).success(function(data) {
 				    console.log("Login successful data", data);
-			    	$location.path("/beers"); 
+				    console.log("Referer", $rootScope.referer)
+			    	$location.path($rootScope.referer); 
 			  });
 	  };
   }])
@@ -64,13 +65,14 @@ angular
 	        $scope.beer = data;
 	      });
   }])
-  .controller('BeerEditCtrl', ['$scope', '$routeParams', '$http', '$location',
-                                 function($scope, $routeParams, $http, $location) {
+  .controller('BeerEditCtrl', ['$scope', '$routeParams', '$http', '$location', '$rootScope',
+                                 function($scope, $routeParams, $http, $location, $rootScope) {
 	  	$scope.action = "Edit"
 	  		
 	  	$http.get('/authorized').success(function(data) {
 	  		if (data.authorized === undefined ||  !data.authorized) {
 	  			console.log("Authorization needed");
+	  			$rootScope.referer = $location.path();
 	  			$location.path("/login");
 	  		} else {
 	  			console.log("Authorized");
