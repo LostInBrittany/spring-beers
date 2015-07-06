@@ -4,12 +4,13 @@
 
 var angularBeer = angular.module('AngularBeer', [
   'ngRoute',
+  'ngCookies',
   'BeerControllers',
   'BeerFilters'
 ]);
 
-angularBeer.config(['$routeProvider',
-  function($routeProvider) {
+angularBeer.config(['$routeProvider', '$httpProvider',
+  function($routeProvider, $httpProvider) {
     $routeProvider.
       when('/beers', {
         templateUrl: 'partials/beer-list.html',
@@ -38,4 +39,6 @@ angularBeer.config(['$routeProvider',
       otherwise({
         redirectTo: '/beers'
       });
+    
+      $httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
   }]);

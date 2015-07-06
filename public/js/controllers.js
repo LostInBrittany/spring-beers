@@ -9,33 +9,26 @@ angular
 		  console.log("I did it");
 		  $http({
 				  method: 'POST',
-				  url: "/login",
-				  data: {
-					  username: $scope.user,
-					  password: $scope.password
-				  },
+				  url: "/authorized",
 				  headers: {
-				        'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
-				  },
-				  transformRequest: function(obj) {
-				        var str = [];
-				        for(var p in obj)
-				        	if (obj[p] !== undefined) {
-				        		str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
-				        	}
-				        return str.join("&");
+				        'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8',
+				        'authorization': 'Basic '
+	                              + btoa($scope.user + ":" + $scope.password)
 				  }
 		  }).success(function(data) {
-		        if (data.match(/Fail/)) {
-		          console.log("Login Fail", data);
-		          $location.path("/login");
-		          $scope.fail = true;
-		        } else {
-		          console.log("Login successful", data);
-		          console.log("Referer", $rootScope.referer)
-		          $location.path($rootScope.referer);
-		        }
-			  });
+		    // Now we have a true error code, so if we are here, we are logged in
+        console.log("Login successful", data);
+        console.log("Referer", $rootScope.referer)
+        if ($rootScope.referer === undefined) {
+          $rootScope.referer = "";
+        }
+        $location.path($rootScope.referer);
+        
+      }).error(function(err){
+        console.log("Login Fail", err);
+        $location.path("/login");
+        $scope.fail = true;
+      });
 	  };
   }])
   .controller('BeerListCtrl', ['$scope', '$http', '$location', function($scope, $http, $location) {
@@ -76,15 +69,12 @@ angular
 	  	$scope.action = "Edit"
 	  		
 	  	$http.get('/authorized').success(function(data) {
-	  		if (data.authorized === undefined ||  !data.authorized) {
-	  			console.log("Authorization needed");
-	  			$rootScope.referer = $location.path();
-	  			$location.path("/login");
-	  		} else {
-	  			console.log("Authorized");
-	  		}	  		
-	  		
-	  	});	
+	  			console.log("Authorized");	  		
+	  	}).error(function(err) {
+	  	  console.log("Authorization needed");
+        $rootScope.referer = $location.path();
+        $location.path("/login");
+	  	});
 	  		
 	  		
 	    $http.get('/beer/details?id='+ $routeParams.beerId).success(function(data) {
@@ -118,15 +108,12 @@ angular
                                  function($scope, $http, $location, $rootScope) {
 	  
     $http.get('/authorized').success(function(data) {
-      if (data.authorized === undefined ||  !data.authorized) {
-        console.log("Authorization needed");
-        $rootScope.referer = $location.path();
-        $location.path("/login");
-	  	} else {
-	  		console.log("Authorized");
-	  	}	  		
-	  		
-	  });
+      console.log("Authorized");        
+    }).error(function(err) {
+      console.log("Authorization needed");
+      $rootScope.referer = $location.path();
+      $location.path("/login");
+    });
     
 	  $scope.doAction = function() {
 		  $http({

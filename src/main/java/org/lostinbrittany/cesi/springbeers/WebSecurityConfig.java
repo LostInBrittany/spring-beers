@@ -13,10 +13,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
+        	.httpBasic().and()
             .authorizeRequests()
                 .antMatchers("/", "/**/*.*", "/beer/list", "/beer/details").permitAll()
                 .anyRequest().authenticated()
                 .and()
+             /*   
             .formLogin()
                 .loginPage("/index.html#/login")
                 .defaultSuccessUrl("/index.html", true)
@@ -24,6 +26,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .loginProcessingUrl("/login")
                 .permitAll()
                 .and()
+                */
             .logout()
                 .permitAll()
             .and()
