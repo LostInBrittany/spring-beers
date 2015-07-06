@@ -11,7 +11,7 @@ angular
 				  method: 'POST',
 				  url: "/login",
 				  data: {
-					  user: $scope.user,
+					  username: $scope.user,
 					  password: $scope.password
 				  },
 				  headers: {
@@ -64,9 +64,21 @@ angular
 	        $scope.beer = data;
 	      });
   }])
-  .controller('BeerEditCtrl', ['$scope', '$routeParams', '$http', 
-                                 function($scope, $routeParams, $http) {
+  .controller('BeerEditCtrl', ['$scope', '$routeParams', '$http', '$location',
+                                 function($scope, $routeParams, $http, $location) {
 	  	$scope.action = "Edit"
+	  		
+	  	$http.get('/authorized').success(function(data) {
+	  		if (data.authorized === undefined ||  !data.authorized) {
+	  			console.log("Authorization needed");
+	  			$location.path("/login");
+	  		} else {
+	  			console.log("Authorized");
+	  		}	  		
+	  		
+	  	});	
+	  		
+	  		
 	    $http.get('/beer/details?id='+ $routeParams.beerId).success(function(data) {
 	    	
 	    	for (var param in data) {
@@ -96,7 +108,18 @@ angular
   }])
   .controller('BeerCreateCtrl', ['$scope', '$http', 
                                  function($scope, $http) {
-	  	  $scope.doAction = function() {
+	  
+    $http.get('/authorized').success(function(data) {
+      if (data.authorized === undefined ||  !data.authorized) {
+        console.log("Authorization needed");
+	  		$location.path("/login");
+	  	} else {
+	  		console.log("Authorized");
+	  	}	  		
+	  		
+	  });
+    
+	  $scope.doAction = function() {
 		  $http({
 			  method: 'POST',
 			  url: "/beer/create",
