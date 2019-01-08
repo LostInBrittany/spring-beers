@@ -43,12 +43,21 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-            .authorizeRequests()
-            	.antMatchers("/create", "/delete/", "/delete/*", "/edit").authenticated()
-                .antMatchers("/", "/**/*.*", "/beer/list", "/beer/details").permitAll()
-                .anyRequest().authenticated()
-                .and()
-            	.csrf().disable();
+		.csrf().disable()
+        .authorizeRequests()
+	    	.antMatchers("/create", "/delete/", "/delete/*", "/edit").authenticated()
+	        .antMatchers("/", "/**/*.*", "/beer/list", "/beer/details").permitAll()
+	        .anyRequest().authenticated()
+        .and()
+        .formLogin()
+	        .loginPage("/login.html")
+	        .defaultSuccessUrl("/index.html", true)
+	        .failureUrl("/error.html")
+	        .loginProcessingUrl("/login")
+	        .permitAll()
+        .and()
+		.logout()
+				.permitAll();
     }
     @Bean
     @Override
@@ -70,3 +79,48 @@ The `WebSecurityConfig` class is annotated with `@EnableWebSecurity` to enable S
 The `configure(HttpSecurity)` method defines which URL paths should be secured and which should not. 
 
 As for the `userDetailsService()` method, it sets up an in-memory user store with a single user. That user is given a username of "user", a password of "password", and a role of "USER".
+
+
+## Create a login page
+
+Now we need to create the login page. We are doing simple, so we create a `login.html` file inside `public`:
+
+```html
+<!DOCTYPE html>
+<html>
+	<head>
+			<title>Spring Security Example login form</title>
+	</head>
+
+	<body>
+		<form action="/login" method="post">
+            <div><label> User Name : <input type="text" name="username"/> </label></div>
+            <div><label> Password: <input type="password" name="password"/> </label></div>
+            <div><input type="submit" value="Sign In"/></div>
+        </form>
+    </body>
+</html>
+```
+
+And an `error.html` to manage login errors:
+
+```html
+<!DOCTYPE html>
+<html>
+	<head>
+			<title>Spring Security Example login form</title>
+	</head>
+
+	<body>
+	<p>Incorrect user name and/or password, please try again</p>
+		<form action="/login" method="post">
+            <div><label> User Name : <input type="text" name="username"/> </label></div>
+            <div><label> Password: <input type="password" name="password"/> </label></div>
+            <div><input type="submit" value="Sign In"/></div>
+        </form>
+    </body>
+</html>
+```
+
+
+And now it should work...

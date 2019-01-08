@@ -16,12 +16,21 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-            .authorizeRequests()
-            	.antMatchers("/create", "/delete/", "/delete/*", "/edit").authenticated()
-                .antMatchers("/", "/**/*.*", "/beer/list", "/beer/details").permitAll()
-                .anyRequest().authenticated()
-                .and()
-            	.csrf().disable();
+		.csrf().disable()
+        .authorizeRequests()
+	    	.antMatchers("/create", "/delete/", "/delete/*", "/edit").authenticated()
+	        .antMatchers("/", "/**/*.*", "/beer/list", "/beer/details").permitAll()
+	        .anyRequest().authenticated()
+        .and()
+        .formLogin()
+	        .loginPage("/login.html")
+	        .defaultSuccessUrl("/index.html", true)
+	        .failureUrl("/error.html")
+	        .loginProcessingUrl("/login")
+	        .permitAll()
+        .and()
+		.logout()
+				.permitAll();
     }
     @Bean
     @Override
