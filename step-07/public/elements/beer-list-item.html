@@ -22,8 +22,12 @@
       .el-alcohol {
         clear:both;
       }
+      .pull-right {
+      	margin-left: 10px;
+      }
     </style>
     <div id="{{id}}" class="beer clearfix">
+      <div class="pull-right"><a href="#/edit/{{id}}" class="btn btn-primary">Edit</a></div>
       <div class="pull-right btn btn-primary" on-click="deleteBeer">Delete</div>
       <img class="pull-right el-img" src="{{imgUrl}}">
       <a  href="{{url}}"><h2 class="el-name">{{name}}</h2></a>
