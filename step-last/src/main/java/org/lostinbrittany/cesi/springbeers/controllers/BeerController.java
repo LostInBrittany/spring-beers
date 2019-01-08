@@ -38,8 +38,8 @@ public class BeerController {
     @RequestMapping("/beer/edit")
     public Beer beerEdit(@RequestBody Beer beer) {    	
 		
-	repository.save(beer);
-	return beer;
+			repository.save(beer);
+			return beer;
 	
     }
     @RequestMapping("/beer/create")
