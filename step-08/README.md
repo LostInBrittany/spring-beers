@@ -42,10 +42,10 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http
-		.csrf().disable()
+      http
+        .csrf().disable()
         .authorizeRequests()
-	    	.antMatchers("/create", "/delete/", "/delete/*", "/edit").authenticated()
+	    	  .antMatchers("/create", "/delete/", "/delete/*", "/edit").authenticated()
 	        .antMatchers("/", "/**/*.*", "/beer/list", "/beer/details").permitAll()
 	        .anyRequest().authenticated()
         .and()
@@ -56,20 +56,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	        .loginProcessingUrl("/login")
 	        .permitAll()
         .and()
-		.logout()
-				.permitAll();
+        .logout()
+          .permitAll();
     }
     @Bean
     @Override
     public UserDetailsService userDetailsService() {
-        UserDetails user =
-             User.withDefaultPasswordEncoder()
-                .username("user")
-                .password("password")
-                .roles("USER")
-                .build();
-
-        return new InMemoryUserDetailsManager(user);
+      UserDetails user =
+        User.withDefaultPasswordEncoder()
+          .username("user")
+          .password("password")
+          .roles("USER")
+          .build();
+      return new InMemoryUserDetailsManager(user);
     }
 }
 ```
@@ -88,9 +87,9 @@ Now we need to create the login page. We are doing simple, so we create a `login
 ```html
 <!DOCTYPE html>
 <html>
-	<head>
-			<title>Spring Security Example login form</title>
-	</head>
+  <head>
+    <title>Spring Security Example login form</title>
+  </head>
 
 	<body>
     <form action="/login" method="post">
@@ -108,7 +107,7 @@ And an `error.html` to manage login errors:
 <!DOCTYPE html>
 <html>
 	<head>
-			<title>Spring Security Example login form</title>
+		  <title>Spring Security Example login form</title>
 	</head>
 
 	<body>
