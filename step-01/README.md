@@ -147,3 +147,5 @@ Greetings from Spring Boot!
 ![Testing Hello Spring Boot](./assets/step-01_02.jpg)
 
 </div>
+
+In the [next step](../step-02) you're going to define some routes in your API for the beer list and the beer detail. 
