@@ -30,7 +30,7 @@ public class BeerController {
   }
 
   @RequestMapping(value = "/beer/{id}", method = RequestMethod.GET)
-    public Beer beerDetails(@PathVariable("id") String id) {
+    public String beerDetails(@PathVariable("id") String id) {
     return "Hello beer "+id;
   }
 }
