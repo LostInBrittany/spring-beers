@@ -152,25 +152,22 @@
         this.$.getBeerRequest.generateRequest();
       },
       doAction: function() {        
-    	let beer = {
- 	          "name": this.name,
- 	          "alcohol": this.alcohol,
- 	          "description": this.description,
- 	          "img": this.img,
- 	          "availability": this.availability,
- 	          "brewery": this.brewery,
- 	          "label": this.label,
- 	          "serving": this.serving,
- 	          "style": this.style,
- 	        }
-    	if (this.id) {
-    		beer.id = this.id;
-    	}
-        this.$.createRequest.body = JSON.stringify(beer);
+        this.$.createRequest.body = JSON.stringify({
+          "name": this.name,
+          "alcohol": this.alcohol,
+          "description": this.description,
+          "img": this.img,
+          "availability": this.availability,
+          "brewery": this.brewery,
+          "label": this.label,
+          "serving": this.serving,
+          "style": this.style,
+        });
         this.$.createRequest.headers['content-type'] = 'application/json';
         if (this.action == "Create") {
         	this.$.createRequest.url = "/create" 
         } else {
+        	this.$.createRequest.params.id = this.id;
         	this.$.createRequest.url = "/edit"; 
         }
         this.$.createRequest.generateRequest();
