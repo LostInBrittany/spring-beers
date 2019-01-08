@@ -111,7 +111,8 @@ gradle build && java -jar build/libs/spring-beers-0.1.0.jar
 
 You should see some output like this:
 
-<pre style="background-color: #300A24;"><code>  .   ____          _            __ _ _
+```shell
+  .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
 ( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
  \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
@@ -133,19 +134,19 @@ You should see some output like this:
 2019-01-07 23:21:14.322  INFO 7879 --- [nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
 2019-01-07 23:21:14.323  INFO 7879 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
 2019-01-07 23:21:14.455  INFO 7879 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 132 ms
-</code></pre>
+```
 
 You have now your first Spring application running on `localhost:8080`.  You cans test it using `curl`, or via the browser.
 
 
-<pre style="background-color: #300A24;"><code>$ curl localhost:8080
+```
+$ curl localhost:8080
 Greetings from Spring Boot!
-</code></pre>
+```
 
-<div style='display: flex; justify-content: center;'>
 
 ![Testing Hello Spring Boot](./assets/step-01_02.jpg)
 
-</div>
+
 
 In the [next step](../step-02) you're going to define some routes in your API for the beer list and the beer detail. 
