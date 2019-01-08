@@ -1,4 +1,4 @@
-# Step 05 - Mongo beers
+# Step 06 - Mongo beers
 
 In this step we are going to quit the JSON files and use a MongoDB database. 
 
