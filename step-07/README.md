@@ -43,5 +43,7 @@ public Beer beerEdit(@RequestBody Beer beer) {
 }
 ```
 
-Now you can test your API creating some beers, editing and deleting them using your favorite request editor (I suggest [Insomnia](https://github.com/getinsomnia/insomnia)).
+Now you can test your API creating some beers, editing and deleting them using your favorite request editor (I suggest [Insomnia](https://github.com/getinsomnia/insomnia)), and them using the frontend.
+
+> In the `/step-07/public` folder I've put a updated version of the frontend including the creating, editing and deleting features, please remplace it with your `xxxx-beers` frontend if you have one.
 
