@@ -93,12 +93,12 @@ Now we need to create the login page. We are doing simple, so we create a `login
 	</head>
 
 	<body>
-		<form action="/login" method="post">
-            <div><label> User Name : <input type="text" name="username"/> </label></div>
-            <div><label> Password: <input type="password" name="password"/> </label></div>
-            <div><input type="submit" value="Sign In"/></div>
-        </form>
-    </body>
+    <form action="/login" method="post">
+      <div><label> User Name : <input type="text" name="username"/> </label></div>
+      <div><label> Password: <input type="password" name="password"/> </label></div>
+      <div><input type="submit" value="Sign In"/></div>
+    </form>
+  </body>
 </html>
 ```
 
@@ -112,13 +112,13 @@ And an `error.html` to manage login errors:
 	</head>
 
 	<body>
-	<p>Incorrect user name and/or password, please try again</p>
-		<form action="/login" method="post">
-            <div><label> User Name : <input type="text" name="username"/> </label></div>
-            <div><label> Password: <input type="password" name="password"/> </label></div>
-            <div><input type="submit" value="Sign In"/></div>
-        </form>
-    </body>
+	  <p>Incorrect user name and/or password, please try again</p>
+    <form action="/login" method="post">
+      <div><label> User Name : <input type="text" name="username"/> </label></div>
+      <div><label> Password: <input type="password" name="password"/> </label></div>
+      <div><input type="submit" value="Sign In"/></div>
+    </form>
+  </body>
 </html>
 ```
 
