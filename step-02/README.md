@@ -1,4 +1,4 @@
-# ExpressJ# Spring Boot -  - Step 02 - Basic routing
+# Step 02 - Basic routing
 
 
 ## Defining the routes

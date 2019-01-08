@@ -1,4 +1,4 @@
-# Spring Boot - Step 01 - Hello Spring Boot!
+# Step 01 - Hello Spring Boot!
 
 
 In this tutorial we are using [Gradle]() as build tool.You could do the same thing with [Maven](), of course, but we find it easier and more intuitive with Gradle, so we are using it by default.
