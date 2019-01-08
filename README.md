@@ -24,7 +24,7 @@ As many computers used for the course haven't Git, we have structurated the proj
 1. [Hello Spring Boot](./step-01/)
 1. [Basic routing](./step-02/)
 1. [Using the Beer class](./step-03/)
-1. [JSON beers](./step-04/)
+1. [Reading the JSON files](./step-04/)
 1. [Serving the webapp](./step-05/)
 1. [Mongo beers](./step-06/)
 
