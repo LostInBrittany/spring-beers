@@ -1,38 +1,29 @@
 package org.lostinbrittany.cesi.springbeers.controllers;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.util.List;
+import java.util.Optional;
 
+import org.lostinbrittany.cesi.springbeers.dao.BeerRepository;
 import org.lostinbrittany.cesi.springbeers.model.Beer;
-import org.springframework.util.ResourceUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 @RestController
 public class BeerController {
 
+	@Autowired
+	private BeerRepository repository;
+	
 	@RequestMapping("/beers")
 	public List<Beer> getBeers() {
-		return Beer.getBeers();
+    	return repository.findAll();
 	}
 
 	@RequestMapping(value = "/beer/{id}", method = RequestMethod.GET)
-	public Beer beerDetails(@PathVariable("id") String id) {
-
-		ObjectMapper mapper = new ObjectMapper();
-		
-		try {
-			File file = ResourceUtils.getFile("classpath:beers/" + id + ".json");
-			FileInputStream in = new FileInputStream(file);
-			Beer beer = mapper.readValue(file, Beer.class);
-			return beer;
-		} catch (Exception e) {
-			return null;
-		}
+	public Optional<Beer> beerDetails(@PathVariable("id") String id) {
+    	return repository.findById(id);
 	}
 }

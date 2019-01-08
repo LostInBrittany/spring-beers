@@ -85,3 +85,54 @@ public interface BeerRepository extends MongoRepository<Beer, String> {
 In a typical Java application, you write a class that implements `BeerRepository` and craft the queries yourself. What makes Spring Data MongoDB so useful is the fact that you don’t have to create this implementation. Spring Data MongoDB creates it on the fly when you run the application.
 
 Let’s wire this up and see what it looks like!
+
+
+## Edit `BeerController` 
+
+Now you need to edit `BeerController` to use the repository instead of the JSON files or the harcoded beer list:
+
+```java
+package org.lostinbrittany.cesi.springbeers.controllers;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.lostinbrittany.cesi.springbeers.dao.BeerRepository;
+import org.lostinbrittany.cesi.springbeers.model.Beer;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class BeerController {
+
+	@Autowired
+	private BeerRepository repository;
+	
+	@RequestMapping("/beers")
+	public List<Beer> getBeers() {
+    	return repository.findAll();
+	}
+
+	@RequestMapping(value = "/beer/{id}", method = RequestMethod.GET)
+	public Optional<Beer> beerDetails(@PathVariable("id") String id) {
+    	return repository.findById(id);
+	}
+}
+```
+
+## Wiring your Mongo instance
+
+Spring Boot by default attempts to connect to a locally hosted instance of MongoDB. Read the [reference docs](https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#boot-features-mongodb) for details on pointing your app to an instance of MongoDB hosted elsewhere.
+
+We want to use the `beers` database in our MongoDB instance. We can configure that by putting an `application.properties` file inside `src/main/resources`:
+
+```properties
+# http://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html
+spring.data.mongodb.uri=mongodb://localhost/beers
+```
+
+
+And now you should have all your data coming from MongoDB!
