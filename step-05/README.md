@@ -15,7 +15,7 @@ Now we need to copy the `xxxx-beers` frontend web application into the `public` 
 If you don't have a `xxxx-beers` frontend, we have put a working version of the frontend in the `/frontend` folder in the repository. 
 
 
-## Modify the webapp to call the express server
+## Modify the webapp to call the server
 
 You should modify the network calls from the webapp to call our new server instead of simply requesting the JSON files.
 

@@ -1,8 +1,8 @@
 # Spring-Beers
 
-## A Spring-based server-side companion to the [Angular Beers](https://github.com/LostInBrittany/angular-beers) and [Polymer Beers](https://github.com/LostInBrittany/polymer-beers) projects
+## A Spring-based server-side companion to the [Stencil Beers](https://github.com/LostInBrittany/stencil-beers) and [Lit Beers](https://github.com/LostInBrittany/lit-element-beers) projects
 
-The [angular-beers](https://github.com/LostInBrittany/angular-beers) project is a small [AngularJS](http://angularjs.org) tutorial that can be used on its own. But IMHO it is a pity to do only the client-side and mocking the server API with plain files. So here we have a companion project where we are going to do the server-side of [angular-beers](https://github.com/LostInBrittany/angular-beers) using [Spring Boot](https://spring.io/projects/spring-boot).
+The [Stencil Beers](https://github.com/LostInBrittany/stencil-beers) project is a small [Stencil JS](https://stenciljs.com/) tutorial that can be used on its own. But IMHO it is a pity to do only the client-side and mocking the server API with plain files. So here we have a companion project where we are going to do the server-side of [Stencil Beers](https://github.com/LostInBrittany/stencil-beers) using [Spring Boot](https://spring.io/projects/spring-boot).
 
 Spring Boot makes it easy to create stand-alone, production-grade Spring based Applications that you can "just run". Most Spring Boot applications need very little Spring configuration.
 

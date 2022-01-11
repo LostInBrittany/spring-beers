@@ -1,3 +1,4 @@
+
 package org.lostinbrittany.cesi.springbeers.controllers;
 
 import java.util.List;

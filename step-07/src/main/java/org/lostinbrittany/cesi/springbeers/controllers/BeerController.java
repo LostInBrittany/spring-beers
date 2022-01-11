@@ -28,24 +28,24 @@ public class BeerController {
     	return repository.findById(id);
 	}
 
-    @RequestMapping(value = "create", method = RequestMethod.POST)
-    public Beer beerCreate(@RequestBody Beer beer) {    	
-    	repository.save(beer);
-    	return beer;    	
-    }
-    
-    @RequestMapping(value = "delete/{id}", method = RequestMethod.DELETE)
-    public void beerDelete(@PathVariable("id") String id) {
-    	repository.deleteById(id);
-    	return;	
-    }
-    
-    @RequestMapping(value = "edit", method = RequestMethod.POST)
-    public Beer beerEdit(@RequestBody Beer beer) {
-    	if (repository.existsById(beer.getId())) {
-    		repository.save(beer);
-    		return beer;
-    	}
-    	return null;
-    }
+	@RequestMapping(value = "create", method = RequestMethod.POST)
+	public Beer beerCreate(@RequestBody Beer beer) {    	
+		repository.save(beer);
+		return beer;    	
+	}
+	
+	@RequestMapping(value = "delete/{id}", method = RequestMethod.DELETE)
+	public void beerDelete(@PathVariable("id") String id) {
+		repository.deleteById(id);
+		return;	
+	}
+	
+	@RequestMapping(value = "edit", method = RequestMethod.POST)
+	public Beer beerEdit(@RequestBody Beer beer) {
+		if (repository.existsById(beer.getId())) {
+			repository.save(beer);
+			return beer;
+		}
+		return null;
+	}
 }

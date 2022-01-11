@@ -7,7 +7,7 @@ Let's begin by putting the controllers in a `controllers` package.
 
 ## Let's create the beer list 
 
-We are going to take the beer list from the [angular-beers](https://github.com/LostInBrittany/angular-beers) project and serve it from the Spring server. 
+We are going to take the beer list from the [Stencil Beers](https://github.com/LostInBrittany/stencil-beers) project and serve it from the Spring server. 
 To do it, we begin by creating a `Beer` class that keeps the same information than the `Beer` JSON in JavaScript side.
 
 

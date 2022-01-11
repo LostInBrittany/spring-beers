@@ -19,25 +19,26 @@ It will generate the project structure and initialize Gradle support in Eclipse.
 Anyways, you need to modify the `build.gradle` to support Spring Boot. You `build.gradle` should look like this one:
 
 ```groovy
-buildscript {
-   repositories {
-       jcenter()
-   }
-   dependencies {
-       classpath 'org.springframework.boot:spring-boot-gradle-plugin:2.1.1.RELEASE'
-   }
+plugins {
+	id 'org.springframework.boot' version '2.6.2'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'java'
 }
 
-apply plugin: 'java'
-apply plugin: 'org.springframework.boot'
-apply plugin: 'io.spring.dependency-management'
+group = 'org.lostinbrittany.cesi'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '17'
 
 repositories {
-   jcenter()
+	mavenCentral()
 }
 
 dependencies {
-   compile 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+}
+
+test {
+	useJUnitPlatform()
 }
 ```
 
@@ -106,7 +107,7 @@ If you are using Eclipse, right click on `SpringBeersBackendApplication.java` on
 In the command line you can simply use Gradle:
 
 ```bash
-gradle build && java -jar build/libs/spring-beers-0.1.0.jar
+gradle build && java -jar build/libs/springbeers-0.0.1-SNAPSHOT.jar
 ```
 
 You should see some output like this:
@@ -144,9 +145,6 @@ $ curl localhost:8080
 Greetings from Spring Boot!
 ```
 
-
 ![Testing Hello Spring Boot](./assets/step-01_02.jpg)
-
-
 
 In the [next step](../step-02) you're going to define some routes in your API for the beer list and the beer detail. 

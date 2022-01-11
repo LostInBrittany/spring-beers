@@ -1,25 +1,27 @@
+
 package org.lostinbrittany.cesi.springbeers.controllers;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.util.List;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import org.lostinbrittany.cesi.springbeers.model.Beer;
-import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.util.ResourceUtils;
 
 @RestController
 public class BeerController {
 
-	@RequestMapping("/beers")
-	public List<Beer> getBeers() {
-		return Beer.getBeers();
-	}
+  @RequestMapping("/beers")
+  public List<Beer> getBeers() {
+    return Beer.getBeers();
+  }
+
 
 	@RequestMapping(value = "/beer/{id}", method = RequestMethod.GET)
 	public Beer beerDetails(@PathVariable("id") String id) {

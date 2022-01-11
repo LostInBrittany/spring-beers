@@ -10,13 +10,9 @@ Modify the `build.gradle` file and refresh the Gradle project.
 
 ```groovy
 dependencies {
-	compile 'org.springframework.boot:spring-boot-starter-web'
-	compile 'org.springframework.boot:spring-boot-starter-data-mongodb'   
-	compile 'org.springframework.boot:spring-boot-starter-security'
-	
-	// https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core
-	compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.9.8'
-
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-data-mongodb' 
+	implementation 'org.springframework.boot:spring-boot-starter-security'
 }
 ```
 

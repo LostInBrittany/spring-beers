@@ -5,13 +5,13 @@ In this step we are going to quit the JSON files and use a MongoDB database.
 > In order to do this step you need to have your beer data in a MongoDB database.
 > How to do it is outside the scope of this tutorial, but if you only want to do a quicktest, you could:
 >
-> - Install MongoDB (see http://mongodb.com/)
+> - Install MongoDB server and MongoDB Database Tools (see http://mongodb.com/)
 > - Start the MongoDB daemon (usually with the command `mongod`)
 > - Use `mongoimport` command line tool to import the detailed JSON datafiles
 >
 >    ```
->      mongoimport --jsonArray --db beers --collection beers data/beers/AffligemBlond.json
->      mongoimport --jsonArray --db beers --collection beers data/beers/AffligemDubbel.json
+>      mongoimport --db beers --collection beers data/beers/AffligemBlond.json
+>      mongoimport --db beers --collection beers data/beers/AffligemDubbel.json
 >      ...
 >   ```   
 
@@ -23,11 +23,8 @@ The easiest way to add Mongo support to a Spring application is to add the `spri
 
 ```groovy
 dependencies {
-   compile 'org.springframework.boot:spring-boot-starter-web'
-   compile 'org.springframework.boot:spring-boot-starter-data-mongodb'   
-   
-    // https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core
-   compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.9.8'
+  implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-data-mongodb' 
    
 }
 ```
